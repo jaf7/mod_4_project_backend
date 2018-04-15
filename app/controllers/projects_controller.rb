@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
     # if project
       # user = User.find_by(id: project_params[:user_id])
       # project.users << user
-    # else ...
+    # else project = Project.new(project_params)
     project = Project.new(project_params)
     if project.save
       serialized_data= ActiveModelSerializers::Adapter::Json.new(ProjectSerializer.new(project)).serializable_hash
@@ -27,4 +27,4 @@ class ProjectsController < ApplicationController
   end
 
 end
- 
+  

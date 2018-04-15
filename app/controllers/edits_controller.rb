@@ -16,4 +16,4 @@ class EditsController < ApplicationController
       params.require(:edit).permit(:text, :project_id)
     end
 end
- 
+  
