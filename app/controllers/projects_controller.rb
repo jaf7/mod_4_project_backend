@@ -20,6 +20,15 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def update
+    project = Project.find(params[:id])
+    if project.update(body: params[:body])
+      render json: project
+    else
+      render json: self.errors.full_messages
+    end
+  end
+
   private
   
   def project_params
