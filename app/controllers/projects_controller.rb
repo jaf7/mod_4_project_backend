@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
   def index
     projects = Project.all
-    render json: projects
+    render json: projects.sort_by { |project| project.created_at }
   end
 
   def create
