@@ -6,17 +6,14 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    # (if project already exists)
-    # project = Project.find_by(body: project_params[:body])
-    # if project
-      # user = User.find_by(id: project_params[:user_id])
-      # project.users << user
-    # else project = Project.new(project_params)
     project = Project.new(project_params)
     if project.save
-      # serialized_data= ActiveModelSerializers::Adapter::Json.new(ProjectSerializer.new(project)).serializable_hash
-      # ActionCable.server.broadcast 'projects_channel', serialized_data
+      render json: project #  what is project here?
+      serialized_data= ActiveModelSerializers::Adapter::Json.new(ProjectSerializer.new(project)).serializable_hash
+      ActionCable.server.broadcast 'projects_channel', serialized_data
       head :ok
+    else
+      render json: self.errors.full_messages
     end
   end
 
@@ -26,6 +23,7 @@ class ProjectsController < ApplicationController
       render json: project
       serialized_data= ActiveModelSerializers::Adapter::Json.new(ProjectSerializer.new(project)).serializable_hash
       ActionCable.server.broadcast 'projects_channel', serialized_data
+      head :ok
     else
       render json: self.errors.full_messages
     end
