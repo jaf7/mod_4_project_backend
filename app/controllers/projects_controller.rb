@@ -14,8 +14,8 @@ class ProjectsController < ApplicationController
     # else project = Project.new(project_params)
     project = Project.new(project_params)
     if project.save
-      serialized_data= ActiveModelSerializers::Adapter::Json.new(ProjectSerializer.new(project)).serializable_hash
-      ActionCable.server.broadcast 'projects_channel', serialized_data
+      # serialized_data= ActiveModelSerializers::Adapter::Json.new(ProjectSerializer.new(project)).serializable_hash
+      # ActionCable.server.broadcast 'projects_channel', serialized_data
       head :ok
     end
   end
@@ -24,6 +24,8 @@ class ProjectsController < ApplicationController
     project = Project.find(params[:id])
     if project.update(body: params[:body])
       render json: project
+      serialized_data= ActiveModelSerializers::Adapter::Json.new(ProjectSerializer.new(project)).serializable_hash
+      ActionCable.server.broadcast 'projects_channel', serialized_data
     else
       render json: self.errors.full_messages
     end
