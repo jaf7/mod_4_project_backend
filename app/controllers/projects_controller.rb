@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   def create
     project = Project.new(project_params)
     if project.save
-      render json: project #  what is project here?
+      render json: project
       serialized_data= ActiveModelSerializers::Adapter::Json.new(ProjectSerializer.new(project)).serializable_hash
       ActionCable.server.broadcast 'projects_channel', serialized_data
       head :ok

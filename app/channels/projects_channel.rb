@@ -1,8 +1,7 @@
 class ProjectsChannel < ApplicationCable::Channel
   def subscribed
-    # byebug
     stream_from "projects_channel"
-    puts "Connection Made"
+    # puts "Connection Made"
   end
 
   def unsubscribed

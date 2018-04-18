@@ -82,9 +82,19 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+# FROM: https://devcenter.heroku.com/articles/rails-database-connection-behavior#rails-4-1-and-beyond
+# You cannot use the config/database.yml to set any values found in ENV['DATABASE_URL'].
+# This is a list of attributes you cannot change:
+# adapter
+# database
+# username
+# password
+# host
+# port
+
 production:
   <<: *default
-  adapter: postgresql
+  # adapter: postgresql
   # database: mod_4_project_backend
   # username: mod_4_project_backend
   # password: <%= ENV['MOD_4_PROJECT_BACKEND_DATABASE_PASSWORD'] %>
