@@ -31,3 +31,9 @@ project_five = Project.create(title: 'project five', body: 'project five body')
 # project_five.users << user_five
 # user_five.projects << project_five
 
+project_six = Project.create(title: 'project six', body: 'project six body')
+project_seven = Project.create(title: 'project seven', body: 'project seven body')
+project_eight = Project.create(title: 'project eight', body: 'project eight body')
+project_nine = Project.create(title: 'project nine', body: 'project nine body')
+project_ten = Project.create(title: 'project ten', body: 'project ten body')
+project_eleven = Project.create(title: 'project eleven', body: 'project eleven body')
